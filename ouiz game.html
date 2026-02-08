@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 7 Quiz Competition</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #2a3c7f, #4a5fcc);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(to right, #4a5fcc, #2a3c7f);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            border-bottom: 5px solid #ffcc00;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .content-area {
+            display: flex;
+            flex-wrap: wrap;
+            min-height: 700px;
+        }
+
+        .panel {
+            flex: 1;
+            padding: 30px;
+            min-width: 300px;
+        }
+
+        .left-panel {
+            background-color: #f8f9fa;
+            border-right: 2px dashed #ddd;
+        }
+
+        .right-panel {
+            background-color: #ffffff;
+        }
+
+        .panel-title {
+            color: #2a3c7f;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ffcc00;
+            display: flex;
+            align-items: center;
+        }
+
+        .panel-title i {
+            margin-right: 10px;
+            color: #4a5fcc;
+        }
+
+        .team-setup, .level-selection, .quiz-area, .score-area {
+            margin-bottom: 30px;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #4a5fcc;
+            transition: transform 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-card h3 {
+            color: #2a3c7f;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .team-card input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .team-card input:focus {
+            border-color: #4a5fcc;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(74, 95, 204, 0.2);
+        }
+
+        .team-score {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2a3c7f;
+        }
+
+        .levels {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .level-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 15px 10px;
+            background: linear-gradient(to bottom, #f0f4ff, #e1e7ff);
+            border: 2px solid #c2c9e6;
+            border-radius: 10px;
+            font-weight: bold;
+            color: #2a3c7f;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .level-btn:hover {
+            background: linear-gradient(to bottom, #e1e7ff, #d1d9ff);
+            transform: translateY(-3px);
+        }
+
+        .level-btn.active {
+            background: linear-gradient(to bottom, #4a5fcc, #2a3c7f);
+            color: white;
+            border-color: #2a3c7f;
+            box-shadow: 0 5px 15px rgba(42, 60, 127, 0.3);
+        }
+
+        .subjects {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .subject-btn {
+            padding: 18px 10px;
+            background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            font-weight: bold;
+            color: #495057;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .subject-btn:hover {
+            background: linear-gradient(to bottom, #e9ecef, #dae0e5);
+            transform: translateY(-3px);
+        }
+
+        .subject-btn.active {
+            background: linear-gradient(to bottom, #4a5fcc, #2a3c7f);
+            color: white;
+            border-color: #2a3c7f;
+            box-shadow: 0 5px 15px rgba(42, 60, 127, 0.3);
+        }
+
+        .subject-btn i {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .question-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .timer-container {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to right, #ff6b6b, #ff8e53);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+        }
+
+        .timer-container.warning {
+            background: linear-gradient(to right, #ff8e53, #ffcc00);
+        }
+
+        .timer-container.danger {
+            background: linear-gradient(to right, #ff4757, #ff3838);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .timer-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .timer {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .question-text {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: #2a3c7f;
+            line-height: 1.5;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option-btn {
+            padding: 15px 20px;
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            text-align: left;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+        }
+
+        .option-btn:hover {
+            background: #f0f4ff;
+            border-color: #4a5fcc;
+        }
+
+        .option-btn.selected {
+            background: #e1f0ff;
+            border-color: #4a5fcc;
+            color: #2a3c7f;
+            font-weight: bold;
+        }
+
+        .option-btn.correct {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .option-btn.wrong {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        .option-letter {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #4a5fcc;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .action-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-btn i {
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(to right, #28a745, #20c997);
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(to right, #218838, #1aa179);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .next-btn {
+            background: linear-gradient(to right, #4a5fcc, #2a3c7f);
+            color: white;
+        }
+
+        .next-btn:hover {
+            background: linear-gradient(to right, #3a4fbc, #1a2c6f);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(42, 60, 127, 0.3);
+        }
+
+        .score-display {
+            background: linear-gradient(135deg, #4a5fcc, #2a3c7f);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(42, 60, 127, 0.3);
+        }
+
+        .score-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .score-value {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .score-details {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .score-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .score-item span:first-child {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .score-item span:last-child {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .score-positive {
+            color: #28a745;
+        }
+
+        .score-negative {
+            color: #dc3545;
+        }
+
+        .reset-btn {
+            background: linear-gradient(to right, #dc3545, #c82333);
+            color: white;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .reset-btn:hover {
+            background: linear-gradient(to right, #c82333, #b21f2d);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+        }
+
+        .question-counter {
+            background: #e9ecef;
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .questions-left {
+            color: #dc3545;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        .timeout-message {
+            background: #ff6b6b;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            background: #f8f9fa;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .content-area {
+                flex-direction: column;
+            }
+            
+            .left-panel {
+                border-right: none;
+                border-bottom: 2px dashed #ddd;
+            }
+            
+            .subjects {
+                grid-template-columns: 1fr;
+            }
+            
+            .levels {
+                justify-content: center;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .question-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .timer-container {
+                align-self: stretch;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-graduation-cap"></i> Class 7 Quiz Competition</h1>
+            <p class="subtitle">Test your knowledge across different subjects and levels. Each correct answer: +10, wrong answer: -5</p>
+        </header>
+        
+        <div class="content-area">
+            <!-- Left Panel: Team Setup & Level Selection -->
+            <div class="panel left-panel">
+                <div class="team-setup">
+                    <h2 class="panel-title"><i class="fas fa-users"></i> Team Setup</h2>
+                    
+                    <div class="team-card">
+                        <h3>Team A <span class="team-score" id="teamA-score">0</span></h3>
+                        <input type="text" id="teamA-name" placeholder="Enter Team A Name" value="Team Alpha">
+                        <input type="text" id="teamA-candidate" placeholder="Enter Candidate Name" value="Alex Johnson">
+                    </div>
+                    
+                    <div class="team-card">
+                        <h3>Team B <span class="team-score" id="teamB-score">0</span></h3>
+                        <input type="text" id="teamB-name" placeholder="Enter Team B Name" value="Team Beta">
+                        <input type="text" id="teamB-candidate" placeholder="Enter Candidate Name" value="Sarah Williams">
+                    </div>
+                </div>
+                
+                <div class="level-selection">
+                    <h2 class="panel-title"><i class="fas fa-layer-group"></i> Select Level</h2>
+                    <div class="levels">
+                        <button class="level-btn active" data-level="1">Level 1</button>
+                        <button class="level-btn" data-level="2">Level 2</button>
+                        <button class="level-btn" data-level="3">Level 3</button>
+                        <button class="level-btn" data-level="4">Level 4</button>
+                    </div>
+                </div>
+                
+                <div class="subject-selection">
+                    <h2 class="panel-title"><i class="fas fa-book-open"></i> Select Subject</h2>
+                    <div class="subjects">
+                        <button class="subject-btn active" data-subject="math">
+                            <i class="fas fa-calculator"></i> Mathematics
+                        </button>
+                        <button class="subject-btn" data-subject="science">
+                            <i class="fas fa-flask"></i> Science
+                        </button>
+                        <button class="subject-btn" data-subject="english">
+                            <i class="fas fa-language"></i> English
+                        </button>
+                        <button class="subject-btn" data-subject="social">
+                            <i class="fas fa-globe-americas"></i> Social Studies
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="questions-left" id="questions-left">
+                    Questions remaining: <span id="remaining-count">20</span>
+                </div>
+            </div>
+            
+            <!-- Right Panel: Quiz Area & Score Display -->
+            <div class="panel right-panel">
+                <div class="quiz-area">
+                    <h2 class="panel-title"><i class="fas fa-question-circle"></i> Question</h2>
+                    
+                    <div class="question-counter" id="question-counter">
+                        Question: <span id="current-question-num">1</span>/<span id="total-questions">20</span>
+                    </div>
+                    
+                    <div class="question-container">
+                        <div class="question-header">
+                            <div class="timer-container" id="timer-container">
+                                <i class="fas fa-clock timer-icon"></i>
+                                <div class="timer" id="timer">20</div>
+                                <span style="margin-left: 5px;">seconds</span>
+                            </div>
+                        </div>
+                        
+                        <div class="question-text" id="question-text">
+                            <!-- Question will be loaded here -->
+                        </div>
+                        
+                        <div class="options" id="options-container">
+                            <!-- Options will be loaded here -->
+                        </div>
+                        
+                        <div class="timeout-message hidden" id="timeout-message">
+                            <i class="fas fa-hourglass-end"></i> Time's up! Moving to next question...
+                        </div>
+                    </div>
+                    
+                    <div class="controls">
+                        <button class="action-btn submit-btn" id="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Submit Answer
+                        </button>
+                        <button class="action-btn next-btn hidden" id="next-btn">
+                            <i class="fas fa-forward"></i> Next Question
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="score-area">
+                    <h2 class="panel-title"><i class="fas fa-chart-line"></i> Score Board</h2>
+                    
+                    <div class="score-display">
+                        <div class="score-title">Current Team Score</div>
+                        <div class="score-value" id="current-score">0</div>
+                        
+                        <div class="score-details">
+                            <div class="score-item">
+                                <span>Correct Answers</span>
+                                <span class="score-positive" id="correct-count">0</span>
+                            </div>
+                            <div class="score-item">
+                                <span>Wrong Answers</span>
+                                <span class="score-negative" id="wrong-count">0</span>
+                            </div>
+                        </div>
+                        
+                        <button class="action-btn reset-btn" id="reset-btn">
+                            <i class="fas fa-redo"></i> Reset Quiz
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Designed for Class 7 Quiz Competition | Each correct answer: +10 marks | Each wrong answer: -5 marks | 20 seconds per question</p>
+            <p>© 2023 School Quiz Competition Platform</p>
+        </footer>
+    </div>
+
+    <script>
+        // Expanded Quiz data for Class 7 with 20 questions per level
+        const quizData = {
+            math: {
+                1: [
+                    { question: "What is the value of 3/4 + 2/5?", options: ["23/20", "11/20", "5/9", "1"], correct: 0 },
+                    { question: "If a triangle has angles of 60° and 70°, what is the third angle?", options: ["40°", "50°", "60°", "70°"], correct: 1 },
+                    { question: "What is 15% of 200?", options: ["15", "20", "30", "25"], correct: 2 },
+                    { question: "Solve: 2x + 5 = 15", options: ["x = 5", "x = 10", "x = 7.5", "x = 8"], correct: 0 },
+                    { question: "What is the perimeter of a square with side 5cm?", options: ["10 cm", "15 cm", "20 cm", "25 cm"], correct: 2 },
+                    { question: "Convert 0.6 to a fraction", options: ["3/5", "2/3", "6/10", "1/6"], correct: 0 },
+                    { question: "What is 12 × 7?", options: ["74", "84", "94", "104"], correct: 1 },
+                    { question: "Calculate: 48 ÷ 6 + 3", options: ["8", "9", "10", "11"], correct: 3 },
+                    { question: "What is the area of a rectangle 8cm by 6cm?", options: ["14 cm²", "28 cm²", "48 cm²", "56 cm²"], correct: 2 },
+                    { question: "What is 3/8 of 64?", options: ["8", "16", "24", "32"], correct: 2 },
+                    { question: "Round 7.89 to the nearest whole number", options: ["7", "7.5", "8", "8.5"], correct: 2 },
+                    { question: "What is 100 - 45?", options: ["45", "55", "65", "75"], correct: 1 },
+                    { question: "How many millimeters in 1 centimeter?", options: ["10", "100", "1000", "1"], correct: 0 },
+                    { question: "What is 9 squared?", options: ["18", "27", "72", "81"], correct: 3 },
+                    { question: "Simplify: 16/24", options: ["1/2", "2/3", "3/4", "4/5"], correct: 1 },
+                    { question: "What is 25% of 80?", options: ["15", "20", "25", "30"], correct: 1 },
+                    { question: "Calculate: 5 + 3 × 2", options: ["16", "11", "10", "13"], correct: 1 },
+                    { question: "What is the next number: 2, 4, 6, 8, ?", options: ["9", "10", "11", "12"], correct: 1 },
+                    { question: "How many sides does a pentagon have?", options: ["4", "5", "6", "7"], correct: 1 },
+                    { question: "What is 1/2 as a decimal?", options: ["0.25", "0.5", "0.75", "1.2"], correct: 1 }
+                ],
+                2: [
+                    { question: "What is the area of a rectangle with length 12cm and width 8cm?", options: ["96 cm²", "80 cm²", "48 cm²", "20 cm²"], correct: 0 },
+                    { question: "Simplify: 3/4 ÷ 2/3", options: ["9/8", "1/2", "6/7", "5/8"], correct: 0 },
+                    { question: "What is the perimeter of a square with side 7cm?", options: ["28 cm", "49 cm", "14 cm", "21 cm"], correct: 0 },
+                    { question: "If 5 pencils cost ₹25, how much do 12 pencils cost?", options: ["₹50", "₹60", "₹55", "₹65"], correct: 1 },
+                    { question: "What is 25% of 120?", options: ["25", "30", "35", "40"], correct: 1 },
+                    { question: "Calculate: 15 × 4 - 10", options: ["40", "50", "60", "70"], correct: 1 },
+                    { question: "Convert 5/8 to decimal", options: ["0.5", "0.625", "0.75", "0.875"], correct: 1 },
+                    { question: "What is the average of 10, 20, and 30?", options: ["15", "20", "25", "30"], correct: 1 },
+                    { question: "Solve: 3x - 7 = 14", options: ["x = 5", "x = 6", "x = 7", "x = 8"], correct: 2 },
+                    { question: "What is 7 × 9?", options: ["56", "63", "72", "81"], correct: 1 },
+                    { question: "Find 20% of 150", options: ["20", "25", "30", "35"], correct: 2 },
+                    { question: "How many centimeters in 2.5 meters?", options: ["25", "250", "2500", "2.5"], correct: 1 },
+                    { question: "What is 144 ÷ 12?", options: ["10", "11", "12", "13"], correct: 2 },
+                    { question: "Calculate: 5² + 4²", options: ["9", "20", "25", "41"], correct: 3 },
+                    { question: "What is 3.5 × 2?", options: ["5.5", "6", "6.5", "7"], correct: 3 },
+                    { question: "What is the value of π (pi) to two decimal places?", options: ["3.14", "3.16", "3.18", "3.20"], correct: 0 },
+                    { question: "Solve: 2(x + 3) = 16", options: ["x = 5", "x = 6", "x = 7", "x = 8"], correct: 0 },
+                    { question: "What is the sum of angles in a triangle?", options: ["90°", "180°", "270°", "360°"], correct: 1 },
+                    { question: "Convert 3/5 to percentage", options: ["30%", "50%", "60%", "80%"], correct: 2 },
+                    { question: "What is 12.5 × 8?", options: ["90", "100", "110", "120"], correct: 1 }
+                ],
+                3: [
+                    { question: "What is the value of 3² + 4²?", options: ["7", "12", "25", "49"], correct: 2 },
+                    { question: "Convert 0.75 to a fraction in simplest form", options: ["75/100", "7/5", "3/4", "1/4"], correct: 2 },
+                    { question: "What is the average of 12, 15, 18, and 21?", options: ["16", "16.5", "17", "18"], correct: 1 },
+                    { question: "Find the missing number: 3, 6, 9, 12, ?", options: ["15", "18", "21", "24"], correct: 0 },
+                    { question: "What is 1/3 + 1/4?", options: ["2/7", "5/12", "7/12", "2/3"], correct: 2 },
+                    { question: "Calculate: 7 × 8 - 6 × 5", options: ["16", "26", "36", "46"], correct: 1 },
+                    { question: "What is the square root of 81?", options: ["7", "8", "9", "10"], correct: 2 },
+                    { question: "Simplify: 4/5 × 15/16", options: ["3/4", "4/5", "5/6", "6/7"], correct: 0 },
+                    { question: "If a=4 and b=3, what is a² + b²?", options: ["7", "12", "25", "49"], correct: 2 },
+                    { question: "Convert 2.5 hours to minutes", options: ["120", "150", "180", "200"], correct: 1 },
+                    { question: "What is 17 × 3?", options: ["41", "51", "61", "71"], correct: 1 },
+                    { question: "Find 30% of 90", options: ["27", "30", "33", "36"], correct: 0 },
+                    { question: "Solve: 2(x + 3) = 14", options: ["x = 4", "x = 5", "x = 6", "x = 7"], correct: 0 },
+                    { question: "What is 1000 ÷ 8?", options: ["120", "125", "130", "135"], correct: 1 },
+                    { question: "Calculate: 3.2 + 4.7 + 2.1", options: ["9", "10", "10.5", "11"], correct: 1 },
+                    { question: "What is the LCM of 6 and 8?", options: ["12", "24", "36", "48"], correct: 1 },
+                    { question: "What is the HCF of 12 and 18?", options: ["3", "6", "9", "12"], correct: 1 },
+                    { question: "Solve: x/3 = 4", options: ["x = 12", "x = 7", "x = 1.33", "x = 8"], correct: 0 },
+                    { question: "What is 2³ × 3²?", options: ["12", "18", "36", "72"], correct: 3 },
+                    { question: "What is the area of a circle with radius 7cm? (π=22/7)", options: ["44 cm²", "88 cm²", "154 cm²", "308 cm²"], correct: 2 }
+                ],
+                4: [
+                    { question: "Calculate: 7 × 8 ÷ 4 + 12", options: ["20", "26", "28", "32"], correct: 1 },
+                    { question: "What is the square root of 144?", options: ["11", "12", "13", "14"], correct: 1 },
+                    { question: "If a = 3 and b = 5, what is the value of 2a² - b?", options: ["13", "11", "15", "17"], correct: 0 },
+                    { question: "What is 25% of 80?", options: ["15", "20", "25", "30"], correct: 1 },
+                    { question: "Solve: 5x - 3 = 2x + 12", options: ["x = 3", "x = 4", "x = 5", "x = 6"], correct: 2 },
+                    { question: "What is 12.5 × 8?", options: ["90", "100", "110", "120"], correct: 1 },
+                    { question: "Calculate: 3/5 of 75", options: ["35", "40", "45", "50"], correct: 2 },
+                    { question: "What is the LCM of 6 and 8?", options: ["12", "24", "36", "48"], correct: 1 },
+                    { question: "If 3x = 27, what is x?", options: ["6", "7", "8", "9"], correct: 3 },
+                    { question: "What is 15% of 300?", options: ["30", "40", "45", "50"], correct: 2 },
+                    { question: "Calculate: 4³ - 3³", options: ["27", "37", "47", "57"], correct: 1 },
+                    { question: "What is 7/8 as a percentage?", options: ["75%", "82.5%", "87.5%", "92.5%"], correct: 2 },
+                    { question: "Solve: (x + 5)/2 = 8", options: ["x = 9", "x = 10", "x = 11", "x = 12"], correct: 2 },
+                    { question: "What is 0.375 as a fraction?", options: ["3/8", "5/12", "7/16", "9/24"], correct: 0 },
+                    { question: "Find 40% of 250", options: ["80", "90", "100", "110"], correct: 2 },
+                    { question: "What is the value of (2 + 3)²?", options: ["10", "13", "25", "36"], correct: 2 },
+                    { question: "Solve: 4x - 7 = 3x + 5", options: ["x = 2", "x = 12", "x = 13", "x = 14"], correct: 1 },
+                    { question: "What is the area of a triangle with base 10cm and height 8cm?", options: ["18 cm²", "40 cm²", "48 cm²", "80 cm²"], correct: 1 },
+                    { question: "Calculate: 3.14 × 10²", options: ["31.4", "314", "3140", "3.14"], correct: 1 },
+                    { question: "What is 1/4 + 2/5?", options: ["3/9", "13/20", "3/20", "7/20"], correct: 1 }
+                ]
+            },
+            science: {
+                1: [
+                    { question: "Which gas do plants absorb during photosynthesis?", options: ["Oxygen", "Carbon dioxide", "Nitrogen", "Hydrogen"], correct: 1 },
+                    { question: "What is the boiling point of water?", options: ["90°C", "100°C", "110°C", "120°C"], correct: 1 },
+                    { question: "Which planet is known as the Red Planet?", options: ["Venus", "Mars", "Jupiter", "Saturn"], correct: 1 },
+                    { question: "What is the largest organ in the human body?", options: ["Liver", "Heart", "Skin", "Lungs"], correct: 2 },
+                    { question: "Which part of a plant absorbs water?", options: ["Leaves", "Stem", "Roots", "Flowers"], correct: 2 },
+                    { question: "What is the hardest natural substance?", options: ["Gold", "Iron", "Diamond", "Platinum"], correct: 2 },
+                    { question: "How many bones are in the adult human body?", options: ["206", "210", "215", "220"], correct: 0 },
+                    { question: "What do we call animals that eat only plants?", options: ["Carnivores", "Herbivores", "Omnivores", "Insectivores"], correct: 1 },
+                    { question: "Which planet is closest to the Sun?", options: ["Venus", "Earth", "Mercury", "Mars"], correct: 2 },
+                    { question: "What is H₂O commonly known as?", options: ["Salt", "Sugar", "Water", "Vinegar"], correct: 2 },
+                    { question: "What gas do humans breathe in?", options: ["Oxygen", "Carbon dioxide", "Nitrogen", "Helium"], correct: 0 },
+                    { question: "What is the study of fossils called?", options: ["Biology", "Geology", "Paleontology", "Archaeology"], correct: 2 },
+                    { question: "Which is the largest mammal?", options: ["Elephant", "Blue Whale", "Giraffe", "Polar Bear"], correct: 1 },
+                    { question: "What is the process of a caterpillar turning into a butterfly called?", options: ["Evolution", "Metamorphosis", "Transformation", "Growth"], correct: 1 },
+                    { question: "Which organ pumps blood?", options: ["Lungs", "Liver", "Heart", "Brain"], correct: 2 },
+                    { question: "What is the freezing point of water?", options: ["0°C", "10°C", "-10°C", "100°C"], correct: 0 },
+                    { question: "What do we call a baby cat?", options: ["Puppy", "Kitten", "Calf", "Cub"], correct: 1 },
+                    { question: "Which planet has rings around it?", options: ["Mars", "Venus", "Saturn", "Mercury"], correct: 2 },
+                    { question: "How many legs does a spider have?", options: ["6", "8", "10", "12"], correct: 1 },
+                    { question: "What is the main source of energy on Earth?", options: ["Moon", "Sun", "Wind", "Water"], correct: 1 }
+                ],
+                2: [
+                    { question: "What force pulls objects toward the Earth?", options: ["Magnetism", "Gravity", "Friction", "Electricity"], correct: 1 },
+                    { question: "Which part of a plant makes food?", options: ["Root", "Stem", "Leaf", "Flower"], correct: 2 },
+                    { question: "What is H₂O commonly known as?", options: ["Salt", "Sugar", "Water", "Vinegar"], correct: 2 },
+                    { question: "Which organ pumps blood throughout the body?", options: ["Lungs", "Liver", "Heart", "Brain"], correct: 2 },
+                    { question: "What do we call a baby frog?", options: ["Tadpole", "Pup", "Calf", "Fry"], correct: 0 },
+                    { question: "Which is the smallest planet in our solar system?", options: ["Mars", "Mercury", "Venus", "Earth"], correct: 1 },
+                    { question: "What is the main source of energy for Earth?", options: ["Moon", "Stars", "Sun", "Wind"], correct: 2 },
+                    { question: "Which gas makes up most of Earth's atmosphere?", options: ["Oxygen", "Carbon dioxide", "Nitrogen", "Helium"], correct: 2 },
+                    { question: "What is the process of liquid turning into gas called?", options: ["Freezing", "Melting", "Evaporation", "Condensation"], correct: 2 },
+                    { question: "How many legs does an insect have?", options: ["4", "6", "8", "10"], correct: 1 },
+                    { question: "What is the center of an atom called?", options: ["Electron", "Proton", "Neutron", "Nucleus"], correct: 3 },
+                    { question: "Which metal is liquid at room temperature?", options: ["Iron", "Mercury", "Gold", "Silver"], correct: 1 },
+                    { question: "What do we call animals that eat both plants and animals?", options: ["Carnivores", "Herbivores", "Omnivores", "Insectivores"], correct: 2 },
+                    { question: "Which planet has rings around it?", options: ["Mars", "Venus", "Saturn", "Mercury"], correct: 2 },
+                    { question: "What is the speed of light?", options: ["300,000 km/s", "150,000 km/s", "450,000 km/s", "600,000 km/s"], correct: 0 },
+                    { question: "What is the chemical symbol for gold?", options: ["Go", "Gd", "Au", "Ag"], correct: 2 },
+                    { question: "Which blood cells carry oxygen?", options: ["White blood cells", "Red blood cells", "Platelets", "Plasma"], correct: 1 },
+                    { question: "What is the study of earthquakes called?", options: ["Volcanology", "Seismology", "Meteorology", "Geology"], correct: 1 },
+                    { question: "How many teeth does an adult human have?", options: ["28", "32", "36", "40"], correct: 1 },
+                    { question: "Which planet is known for its great red spot?", options: ["Mars", "Jupiter", "Saturn", "Neptune"], correct: 1 }
+                ],
+                3: [
+                    { question: "What type of energy does the sun produce?", options: ["Electrical", "Solar", "Wind", "Nuclear"], correct: 1 },
+                    { question: "Which gas do humans breathe out?", options: ["Oxygen", "Nitrogen", "Carbon dioxide", "Helium"], correct: 2 },
+                    { question: "What is the smallest unit of matter?", options: ["Cell", "Molecule", "Atom", "Electron"], correct: 2 },
+                    { question: "Which nutrient is important for muscle growth?", options: ["Carbohydrate", "Protein", "Fat", "Vitamin"], correct: 1 },
+                    { question: "What is the chemical symbol for gold?", options: ["Go", "Gd", "Au", "Ag"], correct: 2 },
+                    { question: "What is the study of earthquakes called?", options: ["Meteorology", "Volcanology", "Seismology", "Geology"], correct: 2 },
+                    { question: "Which part of the plant transports water?", options: ["Phloem", "Xylem", "Chlorophyll", "Stomata"], correct: 1 },
+                    { question: "What is the freezing point of water?", options: ["-10°C", "0°C", "10°C", "100°C"], correct: 1 },
+                    { question: "Which blood cells fight infection?", options: ["Red blood cells", "White blood cells", "Platelets", "Plasma"], correct: 1 },
+                    { question: "What is the unit of electric current?", options: ["Volt", "Watt", "Ampere", "Ohm"], correct: 2 },
+                    { question: "What is the main function of chlorophyll?", options: ["Absorb water", "Produce oxygen", "Absorb sunlight", "Support plant"], correct: 2 },
+                    { question: "Which planet is known for its great red spot?", options: ["Mars", "Jupiter", "Saturn", "Neptune"], correct: 1 },
+                    { question: "What is the hardest substance in the human body?", options: ["Bone", "Cartilage", "Tooth enamel", "Nail"], correct: 2 },
+                    { question: "How many chromosomes do humans have?", options: ["23", "46", "64", "92"], correct: 1 },
+                    { question: "What is the chemical symbol for sodium?", options: ["So", "Sa", "Na", "No"], correct: 2 },
+                    { question: "What is the pH of pure water?", options: ["5", "6", "7", "8"], correct: 2 },
+                    { question: "What is the unit of force?", options: ["Joule", "Watt", "Newton", "Pascal"], correct: 2 },
+                    { question: "Which vitamin is produced when skin is exposed to sunlight?", options: ["Vitamin A", "Vitamin B", "Vitamin C", "Vitamin D"], correct: 3 },
+                    { question: "What is the largest planet in our solar system?", options: ["Saturn", "Jupiter", "Neptune", "Uranus"], correct: 1 },
+                    { question: "What is the process of solid turning to liquid called?", options: ["Evaporation", "Condensation", "Melting", "Freezing"], correct: 2 }
+                ],
+                4: [
+                    { question: "What is the process by which plants make food?", options: ["Respiration", "Photosynthesis", "Digestion", "Transpiration"], correct: 1 },
+                    { question: "Which metal is liquid at room temperature?", options: ["Iron", "Mercury", "Gold", "Silver"], correct: 1 },
+                    { question: "What is the unit of electric current?", options: ["Volt", "Watt", "Ampere", "Ohm"], correct: 2 },
+                    { question: "Which planet is closest to the sun?", options: ["Venus", "Earth", "Mercury", "Mars"], correct: 2 },
+                    { question: "What is the pH value of pure water?", options: ["5", "6", "7", "8"], correct: 2 },
+                    { question: "Which vitamin is produced when skin is exposed to sunlight?", options: ["Vitamin A", "Vitamin B", "Vitamin C", "Vitamin D"], correct: 3 },
+                    { question: "What is the main gas in the air we breathe?", options: ["Oxygen", "Carbon dioxide", "Nitrogen", "Hydrogen"], correct: 2 },
+                    { question: "Which organ filters blood in the human body?", options: ["Heart", "Lungs", "Kidneys", "Liver"], correct: 2 },
+                    { question: "What is the SI unit of force?", options: ["Joule", "Watt", "Newton", "Pascal"], correct: 2 },
+                    { question: "Which planet has the most moons?", options: ["Jupiter", "Saturn", "Uranus", "Neptune"], correct: 1 },
+                    { question: "What is the chemical symbol for iron?", options: ["Ir", "Fe", "In", "Fr"], correct: 1 },
+                    { question: "Which is the largest gland in the human body?", options: ["Pancreas", "Liver", "Thyroid", "Pituitary"], correct: 1 },
+                    { question: "What is the study of birds called?", options: ["Entomology", "Ornithology", "Herpetology", "Ichthyology"], correct: 1 },
+                    { question: "What is the process of a solid turning directly into gas?", options: ["Evaporation", "Condensation", "Sublimation", "Deposition"], correct: 2 },
+                    { question: "Which planet rotates on its side?", options: ["Venus", "Uranus", "Neptune", "Pluto"], correct: 1 },
+                    { question: "What is the unit of energy?", options: ["Watt", "Joule", "Newton", "Pascal"], correct: 1 },
+                    { question: "Which part of the brain controls balance?", options: ["Cerebrum", "Cerebellum", "Medulla", "Hypothalamus"], correct: 1 },
+                    { question: "What is the chemical formula for table salt?", options: ["NaCl", "HCl", "H2O", "CO2"], correct: 0 },
+                    { question: "Which gas is used by plants during photosynthesis?", options: ["Oxygen", "Carbon dioxide", "Nitrogen", "Hydrogen"], correct: 1 },
+                    { question: "What is the hardest natural substance on Earth?", options: ["Gold", "Platinum", "Diamond", "Iron"], correct: 2 }
+                ]
+            },
+            english: {
+                1: [
+                    { question: "Which word is a noun in: 'The cat ran quickly'?", options: ["The", "cat", "ran", "quickly"], correct: 1 },
+                    { question: "What is the plural of 'child'?", options: ["Childs", "Children", "Childes", "Child's"], correct: 1 },
+                    { question: "Which word is an adjective?", options: ["Run", "Beautiful", "Quickly", "And"], correct: 1 },
+                    { question: "What is the past tense of 'go'?", options: ["Goed", "Went", "Gone", "Going"], correct: 1 },
+                    { question: "Which is a vowel?", options: ["B", "C", "A", "D"], correct: 2 },
+                    { question: "What is the opposite of 'hot'?", options: ["Warm", "Cold", "Cool", "Freezing"], correct: 1 },
+                    { question: "What is the plural of 'tooth'?", options: ["Tooths", "Teeth", "Toothes", "Tooth's"], correct: 1 },
+                    { question: "Which is a preposition?", options: ["Run", "Quickly", "Under", "And"], correct: 2 },
+                    { question: "What is the synonym of 'happy'?", options: ["Sad", "Joyful", "Angry", "Tired"], correct: 1 },
+                    { question: "Which word is spelled correctly?", options: ["Skool", "School", "Sckool", "Scholl"], correct: 1 },
+                    { question: "What is the past tense of 'eat'?", options: ["Eated", "Ate", "Eaten", "Eating"], correct: 1 },
+                    { question: "Which is a conjunction?", options: ["But", "Run", "Blue", "Quickly"], correct: 0 },
+                    { question: "What is the plural of 'mouse'?", options: ["Mouses", "Mice", "Mouse's", "Mices"], correct: 1 },
+                    { question: "What punctuation ends a statement?", options: [".", ",", "!", "?"], correct: 0 },
+                    { question: "Which is an adverb?", options: ["Happy", "Run", "Quickly", "Table"], correct: 2 },
+                    { question: "What is the plural of 'knife'?", options: ["Knifes", "Knives", "Knife's", "Knive"], correct: 1 },
+                    { question: "Which is a pronoun?", options: ["Run", "He", "Quickly", "Beautiful"], correct: 1 },
+                    { question: "What is the synonym of 'big'?", options: ["Small", "Large", "Tiny", "Short"], correct: 1 },
+                    { question: "Which is an interjection?", options: ["Run!", "Oh!", "Blue", "Quickly"], correct: 1 },
+                    { question: "What is the past tense of 'write'?", options: ["Writed", "Wrote", "Written", "Writing"], correct: 1 }
+                ],
+                2: [
+                    { question: "Which sentence is correct?", options: ["She don't like apples.", "She doesn't like apples.", "She not like apples.", "She didn't likes apples."], correct: 1 },
+                    { question: "What is the synonym of 'happy'?", options: ["Sad", "Joyful", "Angry", "Tired"], correct: 1 },
+                    { question: "Identify the verb: 'Birds fly in the sky.'", options: ["Birds", "fly", "in", "sky"], correct: 1 },
+                    { question: "What is the opposite of 'heavy'?", options: ["Strong", "Light", "Big", "Hard"], correct: 1 },
+                    { question: "What is the comparative form of 'tall'?", options: ["Taller", "Tallest", "More tall", "Most tall"], correct: 0 },
+                    { question: "Which is a proper noun?", options: ["city", "London", "river", "mountain"], correct: 1 },
+                    { question: "What is the past tense of 'write'?", options: ["Writed", "Wrote", "Written", "Writing"], correct: 1 },
+                    { question: "Which is an example of alliteration?", options: ["The cat sat.", "Peter Piper picked peppers.", "I am hungry.", "Run fast!"], correct: 1 },
+                    { question: "What is a group of lions called?", options: ["Pack", "Herd", "Pride", "Flock"], correct: 2 },
+                    { question: "Which is a compound word?", options: ["Book", "Football", "Reading", "Beautiful"], correct: 1 },
+                    { question: "What is the plural of 'ox'?", options: ["Oxes", "Oxen", "Ox's", "Oxies"], correct: 1 },
+                    { question: "What punctuation shows excitement?", options: [".", ",", "!", "?"], correct: 2 },
+                    { question: "Which is a collective noun?", options: ["Team", "Player", "Game", "Win"], correct: 0 },
+                    { question: "What is the past participle of 'swim'?", options: ["Swam", "Swum", "Swimmed", "Swimming"], correct: 1 },
+                    { question: "What is the synonym of 'angry'?", options: ["Happy", "Furious", "Calm", "Sad"], correct: 1 },
+                    { question: "What is the plural of 'crisis'?", options: ["Crises", "Crisises", "Crisis's", "Crisi"], correct: 0 },
+                    { question: "Which is a metaphor?", options: ["As brave as a lion", "Life is a journey", "He runs like the wind", "She's sweet like candy"], correct: 1 },
+                    { question: "What is an antonym for 'ancient'?", options: ["Old", "Modern", "Historic", "Traditional"], correct: 1 },
+                    { question: "What punctuation is used in contractions?", options: [".", ",", "!", "'"], correct: 3 },
+                    { question: "What is the superlative form of 'good'?", options: ["Gooder", "Better", "Best", "More good"], correct: 2 }
+                ],
+                3: [
+                    { question: "What is the comparative form of 'good'?", options: ["Gooder", "Better", "Best", "More good"], correct: 1 },
+                    { question: "Which is a compound sentence?", options: ["I like tea.", "I like tea and coffee.", "I like tea because it's warm.", "Liking tea."], correct: 1 },
+                    { question: "What punctuation ends a question?", options: [".", ",", "!", "?"], correct: 3 },
+                    { question: "Which word is spelled correctly?", options: ["Recieve", "Receive", "Receeve", "Recive"], correct: 1 },
+                    { question: "What is a metaphor?", options: ["Like or as comparison", "Direct comparison", "Exaggeration", "Giving human traits"], correct: 1 },
+                    { question: "What is the superlative form of 'bad'?", options: ["Badder", "Baddest", "Worse", "Worst"], correct: 3 },
+                    { question: "Which is a complex sentence?", options: ["I ate lunch.", "I ate lunch and dinner.", "After I finished work, I ate lunch.", "Lunch time."], correct: 2 },
+                    { question: "What is personification?", options: ["Like comparison", "Direct comparison", "Giving human traits to non-human", "Exaggeration"], correct: 2 },
+                    { question: "What is the plural of 'cactus'?", options: ["Cactuses", "Cacti", "Both A and B", "Cactusses"], correct: 2 },
+                    { question: "Which is a fragment?", options: ["The dog barked.", "Running quickly.", "She sang beautifully.", "They won the game."], correct: 1 },
+                    { question: "What is the antonym of 'ancient'?", options: ["Old", "Modern", "Historical", "Traditional"], correct: 1 },
+                    { question: "What is hyperbole?", options: ["Understatement", "Exaggeration", "Comparison", "Contradiction"], correct: 1 },
+                    { question: "What is the past perfect of 'go'?", options: ["Went", "Gone", "Had gone", "Was going"], correct: 2 },
+                    { question: "Which word is a homophone for 'flower'?", options: ["Floor", "Flour", "Flourish", "Flow"], correct: 1 },
+                    { question: "What is an oxymoron?", options: ["Contradictory terms", "Similar terms", "Repeated sounds", "Word play"], correct: 0 },
+                    { question: "What is a synonym for 'benevolent'?", options: ["Cruel", "Kind", "Angry", "Selfish"], correct: 1 },
+                    { question: "What is the plural of 'analysis'?", options: ["Analyses", "Analysises", "Analysi", "Analysis's"], correct: 0 },
+                    { question: "What is the literary term for a story with hidden meaning?", options: ["Biography", "Allegory", "Fable", "Myth"], correct: 1 },
+                    { question: "Which is an example of onomatopoeia?", options: ["The cat meowed.", "She is pretty.", "He ran fast.", "Big house."], correct: 0 },
+                    { question: "What is foreshadowing?", options: ["Flashback", "Hinting at future events", "Character description", "Setting"], correct: 1 }
+                ],
+                4: [
+                    { question: "What is the literary term for giving human traits to non-human things?", options: ["Metaphor", "Simile", "Personification", "Hyperbole"], correct: 2 },
+                    { question: "Which is a preposition?", options: ["Run", "Beautiful", "Under", "Quickly"], correct: 2 },
+                    { question: "What is the main idea of a story called?", options: ["Theme", "Plot", "Character", "Setting"], correct: 0 },
+                    { question: "Which is an example of alliteration?", options: ["She sells seashells.", "The cat sat on the mat.", "I am so tired.", "Run fast!"], correct: 0 },
+                    { question: "What is a soliloquy?", options: ["Conversation", "Monologue to audience", "Stage direction", "Poem"], correct: 1 },
+                    { question: "What is the antonym of 'benevolent'?", options: ["Kind", "Generous", "Malevolent", "Friendly"], correct: 2 },
+                    { question: "What is onomatopoeia?", options: ["Word that sounds like what it means", "Repeated consonant sounds", "Exaggeration", "Comparison"], correct: 0 },
+                    { question: "What is the study of word origins called?", options: ["Syntax", "Etymology", "Semantics", "Phonetics"], correct: 1 },
+                    { question: "Which is an example of irony?", options: ["A fire station burns down.", "It's raining.", "The sun is bright.", "Birds sing."], correct: 0 },
+                    { question: "What is a synonym for 'gregarious'?", options: ["Shy", "Sociable", "Angry", "Intelligent"], correct: 1 },
+                    { question: "What is the rhyme scheme of a sonnet?", options: ["ABAB CDCD EFEF GG", "AABB CCDD EEFF", "AAAA BBBB CCCC", "ABC ABC ABC"], correct: 0 },
+                    { question: "What is foreshadowing?", options: ["Hinting at future events", "Looking back", "Character development", "Setting description"], correct: 0 },
+                    { question: "What is the plural of 'analysis'?", options: ["Analyses", "Analysises", "Analysi", "Analysis's"], correct: 0 },
+                    { question: "What is an allegory?", options: ["Story with hidden meaning", "True story", "Short poem", "Funny story"], correct: 0 },
+                    { question: "Which is a palindrome?", options: ["Racecar", "Elephant", "Butterfly", "Mountain"], correct: 0 },
+                    { question: "What is dramatic irony?", options: ["Audience knows something characters don't", "Character talks to audience", "Unexpected twist", "Tragic ending"], correct: 0 },
+                    { question: "What is a synonym for 'ephemeral'?", options: ["Permanent", "Temporary", "Beautiful", "Complex"], correct: 1 },
+                    { question: "What is a paradox?", options: ["Seemingly contradictory statement", "Simple truth", "Direct statement", "Question"], correct: 0 },
+                    { question: "What is the literary term for the emotional atmosphere of a story?", options: ["Theme", "Mood", "Plot", "Setting"], correct: 1 },
+                    { question: "What is an antonym for 'profound'?", options: ["Deep", "Shallow", "Intelligent", "Wise"], correct: 1 }
+                ]
+            },
+            social: {
+                1: [
+                    { question: "Who was the first Prime Minister of India?", options: ["Mahatma Gandhi", "Jawaharlal Nehru", "Indira Gandhi", "Rajendra Prasad"], correct: 1 },
+                    { question: "What is the capital of France?", options: ["London", "Berlin", "Paris", "Madrid"], correct: 2 },
+                    { question: "Which is the longest river in the world?", options: ["Amazon", "Nile", "Yangtze", "Mississippi"], correct: 1 },
+                    { question: "What is the study of past events called?", options: ["Geography", "History", "Civics", "Economics"], correct: 1 },
+                    { question: "What is the capital of Japan?", options: ["Seoul", "Beijing", "Tokyo", "Bangkok"], correct: 2 },
+                    { question: "Which is the largest continent?", options: ["Africa", "Asia", "North America", "Europe"], correct: 1 },
+                    { question: "Who wrote the Indian National Anthem?", options: ["Rabindranath Tagore", "Bankim Chandra Chatterjee", "Sarojini Naidu", "Subhash Chandra Bose"], correct: 0 },
+                    { question: "What is the currency of USA?", options: ["Dollar", "Euro", "Pound", "Yen"], correct: 0 },
+                    { question: "Which planet is known as the Blue Planet?", options: ["Earth", "Mars", "Venus", "Neptune"], correct: 0 },
+                    { question: "What is the study of maps called?", options: ["Cartography", "Geography", "Topography", "Geology"], correct: 0 },
+                    { question: "Who discovered gravity?", options: ["Albert Einstein", "Isaac Newton", "Galileo", "Archimedes"], correct: 1 },
+                    { question: "What is the capital of Australia?", options: ["Sydney", "Melbourne", "Canberra", "Perth"], correct: 2 },
+                    { question: "Which is the smallest country?", options: ["Monaco", "Vatican City", "San Marino", "Liechtenstein"], correct: 1 },
+                    { question: "What is the Parliament of India called?", options: ["Rajya Sabha", "Lok Sabha", "Sansad", "Assembly"], correct: 2 },
+                    { question: "Who was known as the 'Father of the Nation' in India?", options: ["Jawaharlal Nehru", "Mahatma Gandhi", "Subhash Chandra Bose", "Bhagat Singh"], correct: 1 },
+                    { question: "What is the capital of China?", options: ["Shanghai", "Beijing", "Hong Kong", "Taipei"], correct: 1 },
+                    { question: "Which ocean is the largest?", options: ["Atlantic", "Indian", "Pacific", "Arctic"], correct: 2 },
+                    { question: "Who was the first woman Prime Minister of India?", options: ["Sarojini Naidu", "Indira Gandhi", "Mother Teresa", "Pratibha Patil"], correct: 1 },
+                    { question: "What is the study of rocks called?", options: ["Biology", "Geology", "Meteorology", "Archaeology"], correct: 1 },
+                    { question: "Which is the highest mountain in the world?", options: ["K2", "Kangchenjunga", "Mount Everest", "Makalu"], correct: 2 }
+                ],
+                2: [
+                    { question: "Which continent is the largest?", options: ["Africa", "Asia", "North America", "Europe"], correct: 1 },
+                    { question: "Who discovered America?", options: ["Christopher Columbus", "Vasco da Gama", "Marco Polo", "James Cook"], correct: 0 },
+                    { question: "What is the currency of Japan?", options: ["Dollar", "Euro", "Yen", "Pound"], correct: 2 },
+                    { question: "Which ocean is the largest?", options: ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean"], correct: 2 },
+                    { question: "What is the study of rocks called?", options: ["Biology", "Geology", "Meteorology", "Archaeology"], correct: 1 },
+                    { question: "Who was the first woman Prime Minister of India?", options: ["Sarojini Naidu", "Indira Gandhi", "Mother Teresa", "Pratibha Patil"], correct: 1 },
+                    { question: "What is the capital of China?", options: ["Shanghai", "Beijing", "Hong Kong", "Taipei"], correct: 1 },
+                    { question: "Which is the highest mountain in the world?", options: ["K2", "Kangchenjunga", "Mount Everest", "Makalu"], correct: 2 },
+                    { question: "What is the study of weather called?", options: ["Geology", "Meteorology", "Climatology", "Hydrology"], correct: 1 },
+                    { question: "Who was the first President of India?", options: ["Rajendra Prasad", "S. Radhakrishnan", "Zakir Hussain", "V.V. Giri"], correct: 0 },
+                    { question: "What is the capital of Russia?", options: ["St. Petersburg", "Moscow", "Kiev", "Warsaw"], correct: 1 },
+                    { question: "Which is the largest desert in the world?", options: ["Sahara", "Gobi", "Arabian", "Kalahari"], correct: 0 },
+                    { question: "What is the study of population called?", options: ["Demography", "Geography", "Sociology", "Anthropology"], correct: 0 },
+                    { question: "Who built the Taj Mahal?", options: ["Akbar", "Shah Jahan", "Aurangzeb", "Jahangir"], correct: 1 },
+                    { question: "What is the capital of Egypt?", options: ["Alexandria", "Cairo", "Giza", "Luxor"], correct: 1 },
+                    { question: "What is the capital of Canada?", options: ["Toronto", "Vancouver", "Ottawa", "Montreal"], correct: 2 },
+                    { question: "Which is the largest state in India by area?", options: ["Maharashtra", "Uttar Pradesh", "Rajasthan", "Madhya Pradesh"], correct: 2 },
+                    { question: "Who was the first Emperor of the Mauryan Empire?", options: ["Ashoka", "Chandragupta Maurya", "Bindusara", "Samudragupta"], correct: 1 },
+                    { question: "What is the study of coins called?", options: ["Archaeology", "Numismatics", "Epigraphy", "Paleography"], correct: 1 },
+                    { question: "Which is the longest river in India?", options: ["Ganga", "Yamuna", "Brahmaputra", "Godavari"], correct: 0 }
+                ],
+                3: [
+                    { question: "What is the name of the Indian national flag?", options: ["Tricolor", "Tiranga", "Both A and B", "None of these"], correct: 2 },
+                    { question: "Which planet is known as the Blue Planet?", options: ["Earth", "Mars", "Venus", "Neptune"], correct: 0 },
+                    { question: "Who wrote the Indian Constitution?", options: ["Mahatma Gandhi", "Jawaharlal Nehru", "B.R. Ambedkar", "Sardar Patel"], correct: 2 },
+                    { question: "Which is the smallest continent?", options: ["Europe", "Australia", "Antarctica", "South America"], correct: 1 },
+                    { question: "What is the study of ancient civilizations called?", options: ["History", "Archaeology", "Anthropology", "Paleontology"], correct: 1 },
+                    { question: "Who was the first Emperor of the Mauryan Empire?", options: ["Ashoka", "Chandragupta Maurya", "Bindusara", "Samudragupta"], correct: 1 },
+                    { question: "What is the capital of Canada?", options: ["Toronto", "Vancouver", "Ottawa", "Montreal"], correct: 2 },
+                    { question: "Which is the longest river in India?", options: ["Ganga", "Yamuna", "Brahmaputra", "Godavari"], correct: 0 },
+                    { question: "What is the study of coins called?", options: ["Archaeology", "Numismatics", "Epigraphy", "Paleography"], correct: 1 },
+                    { question: "Who founded the Mughal Empire in India?", options: ["Akbar", "Babur", "Humayun", "Aurangzeb"], correct: 1 },
+                    { question: "What is the capital of Brazil?", options: ["Rio de Janeiro", "São Paulo", "Brasília", "Salvador"], correct: 2 },
+                    { question: "Which is the largest state in India by area?", options: ["Maharashtra", "Uttar Pradesh", "Rajasthan", "Madhya Pradesh"], correct: 2 },
+                    { question: "What is the study of the universe called?", options: ["Astronomy", "Astrology", "Cosmology", "Meteorology"], correct: 0 },
+                    { question: "Who was the first female President of India?", options: ["Indira Gandhi", "Pratibha Patil", "Sonia Gandhi", "Meira Kumar"], correct: 1 },
+                    { question: "What is the capital of South Africa?", options: ["Cape Town", "Pretoria", "Johannesburg", "All of these"], correct: 3 },
+                    { question: "Which is the largest lake in the world?", options: ["Lake Superior", "Caspian Sea", "Lake Victoria", "Lake Baikal"], correct: 1 },
+                    { question: "What is the study of human societies called?", options: ["Psychology", "Sociology", "Anthropology", "Philosophy"], correct: 1 },
+                    { question: "Who was the first female ruler of Delhi Sultanate?", options: ["Razia Sultana", "Nur Jahan", "Mumtaz Mahal", "Chand Bibi"], correct: 0 },
+                    { question: "What is the capital of Argentina?", options: ["Buenos Aires", "Santiago", "Lima", "Montevideo"], correct: 0 },
+                    { question: "Which is the smallest ocean?", options: ["Atlantic", "Indian", "Pacific", "Arctic"], correct: 3 }
+                ],
+                4: [
+                    { question: "Which mountain range is the highest in the world?", options: ["Alps", "Andes", "Himalayas", "Rockies"], correct: 2 },
+                    { question: "What is the Parliament of India called?", options: ["Rajya Sabha", "Lok Sabha", "Sansad", "Vidhan Sabha"], correct: 2 },
+                    { question: "Who was known as the 'Father of the Nation' in India?", options: ["Jawaharlal Nehru", "Mahatma Gandhi", "Subhash Chandra Bose", "Bhagat Singh"], correct: 1 },
+                    { question: "Which is the largest desert in the world?", options: ["Sahara Desert", "Gobi Desert", "Arabian Desert", "Thar Desert"], correct: 0 },
+                    { question: "What is the study of human societies called?", options: ["Psychology", "Sociology", "Anthropology", "Philosophy"], correct: 1 },
+                    { question: "Who was the first female ruler of Delhi Sultanate?", options: ["Razia Sultana", "Nur Jahan", "Mumtaz Mahal", "Chand Bibi"], correct: 0 },
+                    { question: "What is the capital of Argentina?", options: ["Buenos Aires", "Santiago", "Lima", "Montevideo"], correct: 0 },
+                    { question: "Which is the smallest ocean?", options: ["Atlantic", "Indian", "Pacific", "Arctic"], correct: 3 },
+                    { question: "What is the study of ancient writing called?", options: ["Archaeology", "Epigraphy", "Paleography", "Numismatics"], correct: 2 },
+                    { question: "Who was the founder of the Gupta Empire?", options: ["Samudragupta", "Chandragupta I", "Skandagupta", "Kumaragupta"], correct: 1 },
+                    { question: "What is the capital of Turkey?", options: ["Istanbul", "Ankara", "Izmir", "Antalya"], correct: 1 },
+                    { question: "Which is the largest lake in the world?", options: ["Lake Superior", "Caspian Sea", "Lake Victoria", "Lake Baikal"], correct: 1 },
+                    { question: "What is the study of fossils called?", options: ["Geology", "Paleontology", "Archaeology", "Anthropology"], correct: 1 },
+                    { question: "Who was the first female Chief Minister in India?", options: ["Indira Gandhi", "Sucheta Kriplani", "Mamata Banerjee", "Mayawati"], correct: 1 },
+                    { question: "What is the capital of New Zealand?", options: ["Auckland", "Wellington", "Christchurch", "Hamilton"], correct: 1 },
+                    { question: "What is the capital of Saudi Arabia?", options: ["Jeddah", "Riyadh", "Mecca", "Medina"], correct: 1 },
+                    { question: "Which country has the largest population?", options: ["India", "USA", "China", "Indonesia"], correct: 2 },
+                    { question: "What is the study of earth's physical structure called?", options: ["Geology", "Geography", "Meteorology", "Biology"], correct: 0 },
+                    { question: "Who was the first female Prime Minister of the world?", options: ["Indira Gandhi", "Sirimavo Bandaranaike", "Margaret Thatcher", "Golda Meir"], correct: 1 },
+                    { question: "What is the capital of North Korea?", options: ["Seoul", "Pyongyang", "Busan", "Incheon"], correct: 1 }
+                ]
+            }
+        };
+
+        // Game state variables
+        let currentLevel = 1;
+        let currentSubject = 'math';
+        let selectedOption = null;
+        let score = 0;
+        let correctAnswers = 0;
+        let wrongAnswers = 0;
+        let currentTeam = 'A';
+        let teamAScore = 0;
+        let teamBScore = 0;
+        
+        // Track used questions to prevent repetition
+        let usedQuestions = {
+            math: {1: [], 2: [], 3: [], 4: []},
+            science: {1: [], 2: [], 3: [], 4: []},
+            english: {1: [], 2: [], 3: [], 4: []},
+            social: {1: [], 2: [], 3: [], 4: []}
+        };
+        
+        let currentQuestionNumber = 1;
+        const TOTAL_QUESTIONS = 20;
+        const TIME_PER_QUESTION = 20; // 20 seconds per question
+        
+        // Timer variables
+        let timerInterval;
+        let timeLeft = TIME_PER_QUESTION;
+
+        // DOM Elements
+        const levelButtons = document.querySelectorAll('.level-btn');
+        const subjectButtons = document.querySelectorAll('.subject-btn');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const submitButton = document.getElementById('submit-btn');
+        const nextButton = document.getElementById('next-btn');
+        const resetButton = document.getElementById('reset-btn');
+        const currentScoreElement = document.getElementById('current-score');
+        const correctCountElement = document.getElementById('correct-count');
+        const wrongCountElement = document.getElementById('wrong-count');
+        const teamAScoreElement = document.getElementById('teamA-score');
+        const teamBScoreElement = document.getElementById('teamB-score');
+        const teamANameInput = document.getElementById('teamA-name');
+        const teamACandidateInput = document.getElementById('teamA-candidate');
+        const teamBNameInput = document.getElementById('teamB-name');
+        const teamBCandidateInput = document.getElementById('teamB-candidate');
+        const currentQuestionNumElement = document.getElementById('current-question-num');
+        const totalQuestionsElement = document.getElementById('total-questions');
+        const remainingCountElement = document.getElementById('remaining-count');
+        const timerElement = document.getElementById('timer');
+        const timerContainer = document.getElementById('timer-container');
+        const timeoutMessage = document.getElementById('timeout-message');
+
+        // Initialize the quiz
+        function initQuiz() {
+            loadRandomQuestion();
+            updateScores();
+            setupEventListeners();
+            updateTeamDisplay();
+            updateQuestionCounter();
+        }
+
+        // Get a random unused question
+        function getRandomQuestion() {
+            const questions = quizData[currentSubject][currentLevel];
+            const used = usedQuestions[currentSubject][currentLevel];
+            
+            // If all questions have been used, reset used questions for this subject/level
+            if (used.length >= questions.length) {
+                usedQuestions[currentSubject][currentLevel] = [];
+            }
+            
+            // Find a question that hasn't been used
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * questions.length);
+            } while (used.includes(randomIndex));
+            
+            // Mark this question as used
+            used.push(randomIndex);
+            usedQuestions[currentSubject][currentLevel] = used;
+            
+            return {
+                index: randomIndex,
+                question: questions[randomIndex]
+            };
+        }
+
+        // Start the timer for current question
+        function startTimer() {
+            clearInterval(timerInterval);
+            timeLeft = TIME_PER_QUESTION;
+            timerElement.textContent = timeLeft;
+            timerContainer.className = "timer-container";
+            timeoutMessage.classList.add('hidden');
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                timerElement.textContent = timeLeft;
+                
+                // Update timer color based on remaining time
+                if (timeLeft <= 5) {
+                    timerContainer.className = "timer-container danger";
+                } else if (timeLeft <= 10) {
+                    timerContainer.className = "timer-container warning";
+                }
+                
+                // Time's up
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    handleTimeout();
+                }
+            }, 1000);
+        }
+
+        // Handle timeout - auto-submit wrong answer
+        function handleTimeout() {
+            timeoutMessage.classList.remove('hidden');
+            
+            // Disable all option buttons
+            const optionButtons = document.querySelectorAll('.option-btn');
+            optionButtons.forEach(btn => {
+                btn.style.pointerEvents = 'none';
+            });
+            
+            // Auto-select wrong answer if no answer selected
+            if (selectedOption === null) {
+                // Mark as wrong answer (timeout)
+                score -= 5;
+                wrongAnswers++;
+                
+                // Update team score
+                if (currentTeam === 'A') {
+                    teamAScore -= 5;
+                } else {
+                    teamBScore -= 5;
+                }
+                
+                // Show correct answer
+                const questions = quizData[currentSubject][currentLevel];
+                const used = usedQuestions[currentSubject][currentLevel];
+                const lastUsedIndex = used[used.length - 1];
+                const question = questions[lastUsedIndex];
+                
+                const optionButtons = document.querySelectorAll('.option-btn');
+                optionButtons.forEach((btn, index) => {
+                    if (index === question.correct) {
+                        btn.classList.add('correct');
+                    }
+                });
+            }
+            
+            updateScores();
+            submitButton.classList.add('hidden');
+            nextButton.classList.remove('hidden');
+        }
+
+        // Load a random question
+        function loadRandomQuestion() {
+            const randomQuestionData = getRandomQuestion();
+            const question = randomQuestionData.question;
+            
+            questionText.textContent = question.question;
+            
+            optionsContainer.innerHTML = '';
+            const optionLetters = ['A', 'B', 'C', 'D'];
+            
+            question.options.forEach((option, index) => {
+                const optionButton = document.createElement('button');
+                optionButton.className = 'option-btn';
+                optionButton.innerHTML = `
+                    <span class="option-letter">${optionLetters[index]}</span>
+                    ${option}
+                `;
+                optionButton.dataset.index = index;
+                optionButton.addEventListener('click', () => selectOption(optionButton, index));
+                optionsContainer.appendChild(optionButton);
+            });
+            
+            selectedOption = null;
+            nextButton.classList.add('hidden');
+            submitButton.classList.remove('hidden');
+            timeoutMessage.classList.add('hidden');
+            
+            // Reset all option buttons
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.remove('selected', 'correct', 'wrong');
+                btn.style.pointerEvents = 'auto';
+            });
+            
+            updateQuestionCounter();
+            startTimer();
+        }
+
+        // Select an option
+        function selectOption(optionButton, index) {
+            // Remove selected class from all options
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            optionButton.classList.add('selected');
+            selectedOption = index;
+        }
+
+        // Submit answer
+        function submitAnswer() {
+            if (selectedOption === null) {
+                alert('Please select an answer first!');
+                return;
+            }
+            
+            clearInterval(timerInterval);
+            
+            const questions = quizData[currentSubject][currentLevel];
+            const used = usedQuestions[currentSubject][currentLevel];
+            const lastUsedIndex = used[used.length - 1];
+            const question = questions[lastUsedIndex];
+            
+            const optionButtons = document.querySelectorAll('.option-btn');
+            
+            // Disable all option buttons
+            optionButtons.forEach(btn => {
+                btn.style.pointerEvents = 'none';
+            });
+            
+            // Mark correct and wrong answers
+            optionButtons.forEach((btn, index) => {
+                if (index === question.correct) {
+                    btn.classList.add('correct');
+                } else if (index === selectedOption && selectedOption !== question.correct) {
+                    btn.classList.add('wrong');
+                }
+            });
+            
+            // Update score
+            if (selectedOption === question.correct) {
+                score += 10;
+                correctAnswers++;
+                
+                // Update team score
+                if (currentTeam === 'A') {
+                    teamAScore += 10;
+                } else {
+                    teamBScore += 10;
+                }
+            } else {
+                score -= 5;
+                wrongAnswers++;
+                
+                // Update team score
+                if (currentTeam === 'A') {
+                    teamAScore -= 5;
+                } else {
+                    teamBScore -= 5;
+                }
+            }
+            
+            updateScores();
+            submitButton.classList.add('hidden');
+            nextButton.classList.remove('hidden');
+        }
+
+        // Move to next question
+        function nextQuestion() {
+            currentQuestionNumber++;
+            
+            // Check if we've reached the total question limit
+            if (currentQuestionNumber > TOTAL_QUESTIONS) {
+                endQuiz();
+                return;
+            }
+            
+            // Switch team after each question
+            currentTeam = currentTeam === 'A' ? 'B' : 'A';
+            
+            loadRandomQuestion();
+            updateTeamDisplay();
+        }
+
+        // End the quiz
+        function endQuiz() {
+            clearInterval(timerInterval);
+            
+            const teamAName = teamANameInput.value;
+            const teamBName = teamBNameInput.value;
+            
+            let winnerMessage;
+            if (teamAScore > teamBScore) {
+                winnerMessage = `${teamAName} wins with ${teamAScore} points!`;
+            } else if (teamBScore > teamAScore) {
+                winnerMessage = `${teamBName} wins with ${teamBScore} points!`;
+            } else {
+                winnerMessage = "It's a tie!";
+            }
+            
+            alert(`Quiz Completed!\n\nFinal Scores:\n${teamAName}: ${teamAScore} points\n${teamBName}: ${teamBScore} points\n\n${winnerMessage}\n\nCorrect Answers: ${correctAnswers}\nWrong Answers: ${wrongAnswers}`);
+            
+            // Offer to reset the quiz
+            if (confirm("Quiz completed! Would you like to reset and start a new quiz?")) {
+                resetQuiz();
+            }
+        }
+
+        // Update all score displays
+        function updateScores() {
+            currentScoreElement.textContent = score;
+            correctCountElement.textContent = correctAnswers;
+            wrongCountElement.textContent = wrongAnswers;
+            teamAScoreElement.textContent = teamAScore;
+            teamBScoreElement.textContent = teamBScore;
+        }
+
+        // Update team display
+        function updateTeamDisplay() {
+            const teamCards = document.querySelectorAll('.team-card');
+            teamCards.forEach(card => {
+                card.style.opacity = '0.7';
+                card.style.transform = 'scale(0.95)';
+            });
+            
+            if (currentTeam === 'A') {
+                teamCards[0].style.opacity = '1';
+                teamCards[0].style.transform = 'scale(1)';
+                teamCards[0].style.borderLeftColor = '#4a5fcc';
+                teamCards[1].style.borderLeftColor = '#ddd';
+            } else {
+                teamCards[1].style.opacity = '1';
+                teamCards[1].style.transform = 'scale(1)';
+                teamCards[1].style.borderLeftColor = '#4a5fcc';
+                teamCards[0].style.borderLeftColor = '#ddd';
+            }
+            
+            // Update header with current team info
+            const currentTeamName = currentTeam === 'A' ? teamANameInput.value : teamBNameInput.value;
+            const currentCandidate = currentTeam === 'A' ? teamACandidateInput.value : teamBCandidateInput.value;
+            document.querySelector('.subtitle').innerHTML = 
+                `Currently playing: <strong>${currentTeamName}</strong> (${currentCandidate}) | Each correct: +10, wrong: -5 | Question ${currentQuestionNumber}/${TOTAL_QUESTIONS} | ${TIME_PER_QUESTION} seconds per question`;
+        }
+
+        // Update question counter
+        function updateQuestionCounter() {
+            currentQuestionNumElement.textContent = currentQuestionNumber;
+            totalQuestionsElement.textContent = TOTAL_QUESTIONS;
+            
+            const questionsLeft = TOTAL_QUESTIONS - currentQuestionNumber + 1;
+            remainingCountElement.textContent = questionsLeft;
+        }
+
+        // Reset the quiz
+        function resetQuiz() {
+            clearInterval(timerInterval);
+            
+            score = 0;
+            correctAnswers = 0;
+            wrongAnswers = 0;
+            teamAScore = 0;
+            teamBScore = 0;
+            currentQuestionNumber = 1;
+            currentTeam = 'A';
+            timeLeft = TIME_PER_QUESTION;
+            
+            // Reset used questions
+            usedQuestions = {
+                math: {1: [], 2: [], 3: [], 4: []},
+                science: {1: [], 2: [], 3: [], 4: []},
+                english: {1: [], 2: [], 3: [], 4: []},
+                social: {1: [], 2: [], 3: [], 4: []}
+            };
+            
+            // Reset team names to defaults if they're empty
+            if (!teamANameInput.value.trim()) teamANameInput.value = "Team Alpha";
+            if (!teamACandidateInput.value.trim()) teamACandidateInput.value = "Alex Johnson";
+            if (!teamBNameInput.value.trim()) teamBNameInput.value = "Team Beta";
+            if (!teamBCandidateInput.value.trim()) teamBCandidateInput.value = "Sarah Williams";
+            
+            loadRandomQuestion();
+            updateScores();
+            updateTeamDisplay();
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Level selection
+            levelButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    clearInterval(timerInterval);
+                    levelButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    currentLevel = parseInt(this.dataset.level);
+                    loadRandomQuestion();
+                });
+            });
+            
+            // Subject selection
+            subjectButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    clearInterval(timerInterval);
+                    subjectButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    currentSubject = this.dataset.subject;
+                    loadRandomQuestion();
+                });
+            });
+            
+            // Submit button
+            submitButton.addEventListener('click', submitAnswer);
+            
+            // Next button
+            nextButton.addEventListener('click', nextQuestion);
+            
+            // Reset button
+            resetButton.addEventListener('click', resetQuiz);
+            
+            // Team name changes
+            teamANameInput.addEventListener('input', updateTeamDisplay);
+            teamACandidateInput.addEventListener('input', updateTeamDisplay);
+            teamBNameInput.addEventListener('input', updateTeamDisplay);
+            teamBCandidateInput.addEventListener('input', updateTeamDisplay);
+        }
+
+        // Initialize the quiz when page loads
+        document.addEventListener('DOMContentLoaded', initQuiz);
+    </script>
+</body>
+</html>
